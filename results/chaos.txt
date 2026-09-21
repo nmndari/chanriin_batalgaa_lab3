@@ -1,0 +1,200 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: slo-test.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 20 max VUs, 2m30s max duration (incl. graceful stop):
+              * default: 20 looping VUs for 2m0s (gracefulStop: 30s)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  █ THRESHOLDS 
+
+    checks
+    ✗ 'rate>0.90' rate=87.89%
+
+    http_req_duration{name:cart}
+    ✓ 'p(95)<50' p(95)=2.95ms
+    ✓ 'p(99)<100' p(99)=11.95ms
+
+    http_req_duration{name:pay}
+    ✓ 'p(95)<200' p(95)=1.73ms
+
+    http_req_duration{name:report}
+    ✓ 'p(95)<450' p(95)=392.74ms
+
+    http_req_failed{name:cart}
+    ✗ 'rate<0.01' rate=10.55%
+
+    http_req_failed{name:pay}
+    ✗ 'rate<0.08' rate=15.04%
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 5682   46.853127/s
+    checks_succeeded...: 87.89% 4994 out of 5682
+    checks_failed......: 12.10% 688 out of 5682
+
+    ✗ cart 200
+      ↳  89% — ✓ 1694 / ✗ 200
+    ✗ report 200
+      ↳  89% — ✓ 1691 / ✗ 203
+    ✗ pay 200
+      ↳  84% — ✓ 1609 / ✗ 285
+
+    HTTP
+    http_req_duration..............: avg=90.69ms  min=0s    med=1.15ms   max=408.27ms p(90)=334.35ms p(95)=371.55ms
+      { expected_response:true }...: avg=103.1ms  min=143µs med=1.36ms   max=408.27ms p(90)=342.08ms p(95)=375.67ms
+      { name:cart }................: avg=1.38ms   min=0s    med=1.09ms   max=24.33ms  p(90)=2.31ms   p(95)=2.95ms  
+      { name:pay }.................: avg=750.53µs min=0s    med=676µs    max=5.31ms   p(90)=1.28ms   p(95)=1.73ms  
+      { name:report }..............: avg=269.94ms min=0s    med=289.22ms max=408.27ms p(90)=382.67ms p(95)=392.74ms
+    http_req_failed................: 12.10% 688 out of 5682
+      { name:cart }................: 10.55% 200 out of 1894
+      { name:pay }.................: 15.04% 285 out of 1894
+    http_reqs......................: 5682   46.853127/s
+
+    EXECUTION
+    iteration_duration.............: avg=1.27s    min=1s    med=1.29s    max=1.42s    p(90)=1.38s    p(95)=1.39s   
+    iterations.....................: 1894   15.617709/s
+    vus............................: 4      min=4           max=20
+    vus_max........................: 20     min=20          max=20
+
+    NETWORK
+    data_received..................: 1.3 MB 11 kB/s
+    data_sent......................: 452 kB 3.7 kB/s
+
+
+
+
+time="2026-09-21T18:14:08+08:00" level=error msg="thresholds on metrics 'checks, http_req_failed{name:cart}, http_req_failed{name:pay}' have been crossed"
+
+exit code = 99

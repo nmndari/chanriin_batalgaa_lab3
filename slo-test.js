@@ -33,12 +33,16 @@ export const options = {
     },
 };
 
+// Хүсэлтийн timeout. Үүнгүй бол сервер унах мөчид нислэгт байсан холболт
+// хэзээ ч завсарлахгүй өлгөгдөж, 2 минутын тест 17 минут үргэлжилсэн (max=15m22s).
+const T = '10s';
+
 export default function () {
     const base = 'http://localhost:3000';
 
-    const c = http.post(`${base}/cart/add`, null, { tags: { name: 'cart' } });
-    const r = http.get(`${base}/report`, { tags: { name: 'report' } });
-    const p = http.post(`${base}/pay`, null, { tags: { name: 'pay' } });
+    const c = http.post(`${base}/cart/add`, null, { timeout: T, tags: { name: 'cart' } });
+    const r = http.get(`${base}/report`, { timeout: T, tags: { name: 'report' } });
+    const p = http.post(`${base}/pay`, null, { timeout: T, tags: { name: 'pay' } });
 
     check(c, { 'cart 200': (x) => x.status === 200 });
     check(r, { 'report 200': (x) => x.status === 200 });
